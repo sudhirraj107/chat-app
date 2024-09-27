@@ -5,5 +5,11 @@
   margin:0;
   box-sixing:boder-box;
   font-family: Poppins;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+img.dot{
+  width:15px !important; 
 
 }
