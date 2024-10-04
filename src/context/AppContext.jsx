@@ -14,14 +14,19 @@ const AppContextProvider = (props) => {
     const[userData,setUserData] = useState(null);
     const[chatData,setChatData] = useState(null);
 
+    const[messagesId,setMessagesId] = useState(null)
+    const[messages,setMessages] = useState([])
+    const[chatUser,setChatUser] = useState(null)
+    const[chatVisible,setChatVisible] = useState(false)
+
     const loadUserData = async (uid) => {
         try {
-            const userRef = doc(db,'users',uid)
+            const userRef = doc(db,'users',uid) //users is collection from firebase
             const userSnap = await getDoc(userRef);
             const userData = userSnap.data();
             setUserData(userData)
             if(userData.avatar && userData.name){
-                navigate('/chat')
+                navigate('/chat') //this condition directs the user to chat page after login if he has uploaded his avatar and name else directed to profile 
             }
             else{
                 navigate('/profile')
@@ -51,7 +56,7 @@ const AppContextProvider = (props) => {
                     const userRef = doc(db,'users',item.rId);
                     const userSnap = await getDoc(userRef);
                     const userData = userSnap.data();
-                    tempData.push(...item,userData)
+                    tempData.push({...item,userData })
                 }
                 setChatData(tempData.sort((a,b)=>b.updatedAt - a.updatedAt))
 
@@ -65,7 +70,11 @@ const AppContextProvider = (props) => {
     const value = {
         userData,setUserData,
         chatData,setChatData,
-        loadUserData
+        loadUserData,
+        messages,setMessages,
+        messagesId,setMessagesId,
+        chatUser,setChatUser,
+        chatVisible,setChatVisible
     }
 
     return (
