@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCxUDDzwcb9aGxSKDPM6GeriUZN9peEbio",
+  apiKey: process.env.GOOGLE_FIREBASE_KEY,
   authDomain: "chat-app-gs-6ec92.firebaseapp.com",
   projectId: "chat-app-gs-6ec92",
   storageBucket: "chat-app-gs-6ec92.appspot.com",
